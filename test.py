@@ -20,6 +20,7 @@ def get_res(
     if iterations == max_iter:
         print(f"Reached iteration limit: {max_iter}")
         return None
+    print(f"-" * 32)
 
     return x
 
