@@ -19,6 +19,9 @@ if __name__ == "__main__":
             print("Invalid input! Please enter a valid float.")
 
     success_rearranging: bool = matrix.rearrange_matrix()
+    print(f"Matrix norm: {matrix.matrix_special_norm():.4f}")
+
+    print("Matrix we are working with: " + str(matrix))
 
     if success_rearranging:
         print("Successfully rearranged matrix to make it diagonally dominant.")
@@ -29,11 +32,14 @@ if __name__ == "__main__":
 
     # Output results
     print("\nResults:")
-    print(f"Matrix infinity norm: {matrix.matrix_inf_norm():.4f}")
     print(f"Iterations required: {iterations}")
 
     print("\nSolution vector:")
     for i, val in enumerate(x, 1):
+        print(f"x{i} = {val:.6f}")
+
+    print("\nResiduals vector:")
+    for i, val in enumerate(matrix.compute_residuals(answer_vector=x), 1):
         print(f"x{i} = {val:.6f}")
 
     print("\nFinal iteration errors:")

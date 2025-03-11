@@ -15,6 +15,19 @@ class SystemOfLinearEquations:
         """Calculate infinity norm of matrix (maximum row sum)."""
         return max(sum(abs(x) for x in row) for row in self.matrix)
 
+    def matrix_special_norm(self) -> float:
+        """Calculate infinity norm of matrix (maximum row sum)."""
+        self.rearrange_matrix()
+        c_matrix = []
+        for i in range(self.side_length):
+            row = [0.0] * self.side_length
+            for j in range(self.side_length):
+                if i != j:
+                    row[j] = self.matrix[j][i] / self.matrix[i][i]
+            c_matrix.append(row)
+
+        return max(sum(abs(x) for x in row) for row in c_matrix)
+
     def __init__(
         self,
         augmented_or_square_matrix: List[List[float]],
@@ -160,6 +173,16 @@ class SystemOfLinearEquations:
         )
 
         return answer_vector, iterations, errors[-1]
+
+    def compute_residuals(self, answer_vector: List[float]) -> List[float]:
+        residuals = []
+        for i in range(self.side_length):
+            # Вычисляем невязку для i-го уравнения
+            residual = -self.constants[i]
+            for j in range(self.side_length):
+                residual += self.matrix[i][j] * answer_vector[j]
+            residuals.append(residual)
+        return residuals
 
 
 def rearrange_according_to_order_list(

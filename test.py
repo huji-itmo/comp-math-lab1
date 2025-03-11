@@ -17,6 +17,10 @@ def get_res(
     print(f"Result: {x}")
     print(f"Iterations: {iterations}")
 
+    print("\nResiduals vector:")
+    for i, val in enumerate(matrix.compute_residuals(answer_vector=x), 1):
+        print(f"x{i} = {val:.6f}")
+
     if iterations == max_iter:
         print(f"Reached iteration limit: {max_iter}")
         return None
