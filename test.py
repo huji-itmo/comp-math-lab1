@@ -13,7 +13,7 @@ def get_res(
     if not success:
         print(f"Failed to make matrix diagonally dominant.")
         # return None
-    print(matrix)
+    # print(matrix)
     print(f"Result: {x}")
     print(f"Iterations: {iterations}")
 

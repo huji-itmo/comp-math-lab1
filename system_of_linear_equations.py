@@ -21,10 +21,10 @@ class SystemOfLinearEquations:
         constants: List[float] | None = None,
     ):
         if constants is None:
+            constants = [row[-1] for row in augmented_or_square_matrix]
             augmented_or_square_matrix = [
                 row[:-1] for row in augmented_or_square_matrix
             ]
-            constants = [row[-1] for row in augmented_or_square_matrix]
 
         self.side_length = len(augmented_or_square_matrix)
         self.matrix = augmented_or_square_matrix
@@ -128,7 +128,7 @@ class SystemOfLinearEquations:
             # Format each element in the row and join them with spaces
             formatted_rows.append(" ".join(float_format.format(val) for val in row))
 
-        return "\n".join(formatted_rows)
+        return "\n".join(formatted_rows) + "\n" + str(self.constants)
 
     def gauss_seidel(
         self, epsilon: float, max_iter: int = 1000

@@ -19,8 +19,6 @@ if __name__ == "__main__":
             print("Invalid input! Please enter a valid float.")
 
     success_rearranging: bool = matrix.rearrange_matrix()
-    print("Working with:")
-    print(matrix)
 
     if success_rearranging:
         print("Successfully rearranged matrix to make it diagonally dominant.")
